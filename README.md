@@ -1,4 +1,4 @@
-The MiniZinc Examples Archive
+The MiniZinc Examples Archive - v1.0.0
 =================
 
 This repository contains a collection of small MiniZinc 2.0 models demonstrating various language features.
