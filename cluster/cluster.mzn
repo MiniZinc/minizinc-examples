@@ -21,6 +21,9 @@ constraint forall(i in 1..k-1)
 var 0..maxdist: obj = min( i,j in POINT where i < j )
                          ( dist[i,j] + maxdist * (x[i] != x[j]) );
 
+include "value_precede_chain.mzn";
+constraint value_precede_chain([ i | i in 1..k ],x);
+
 solve maximize obj;
 
 output ["obj = \(obj); x = \(x)\n"];
