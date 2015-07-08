@@ -4,13 +4,14 @@ int: m;
 set of int: COD = 1..m;
 array[DOM,COD] of int: profit;
 
+array[DOM] of var COD: task;
 array[COD] of var DOM: worker;
 
-include "alldifferent.mzn";
-constraint alldifferent(worker);
+include "inverse.mzn";
+constraint inverse(task,worker);
 
 
-solve maximize sum(t in COD)
-            (profit[worker[t],t]);
+solve maximize sum(w in COD)
+            (profit[w,task[w]]);
 
-output [show(worker)];
+output [show(task)];

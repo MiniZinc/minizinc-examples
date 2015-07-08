@@ -25,9 +25,13 @@ constraint forall(ma in MACH)
 var 0..maxt: makespan = max(j in JOB)(s[j,m] + d[j,m]);
 
 solve  
-   %:: int_search([s[j,t]|j in JOB,t in TASK],input_order,indomain_min,complete)
-   %:: int_search([s[j,t]|j in JOB,t in TASK],smallest, indomain_min, complete)
-   %:: int_search([s[j,t]|j in JOB,t in TASK],dom_w_deg, indomain_min, complete)
+%      ::
+%      seq_search([ int_search([s[i,j]| i in JOB, j in TASK],
+%                             smallest, indomain_min, complete),
+%                  int_search([makespan], input_order, indomain_min, complete)])
+%      seq_search([ int_search([makespan], input_order, indomain_min, complete),
+%                   int_search([s[i,j]| i in JOB, j in TASK],
+%                             smallest, indomain_min, complete)])
          minimize makespan;
 
 output [ "makespan = ", show(makespan), "\n"] ++
