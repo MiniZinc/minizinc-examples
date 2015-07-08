@@ -19,9 +19,10 @@ constraint forall(n in NURSE, d in 1..m-2)
 constraint forall(n in NURSE, d in 1..m-1)
                  (x[n,d] = night -> x[n,d+1] != day);
 
-include "global_cardinality_low_up.mzn";
 constraint forall(d in DAY)
-                 (global_cardinality_low_up([x[n,d] | n in NURSE ],                                               [ day, night ], [ o, l ], [o, u])); 
+                 (let {var int: on = sum(n in NURSE)
+                                        (bool2int(x[n,d]=night))        
+                      } in l <= on /\ on <= u);
 
 solve satisfy;
 
