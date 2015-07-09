@@ -36,6 +36,7 @@ constraint forall(s in SHIP)(end[s] = start[s] + len[channel[s]]*speed[s]);
 
 
 % the next ship are all different
+include "alldifferent.mzn";
 constraint alldifferent(next);
 
 % no clashes in channel
