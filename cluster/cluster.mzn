@@ -15,8 +15,8 @@ constraint forall(i,j in POINT where i < j /\ x[i] = x[j])
                  (dist[i,j] <= maxdiam);
 
 constraint forall(i in 1..k-1)
-                 (  min([ j | j in 1..k where x[j] = i])
-                  < min([ j | j in 1..k where x[j] = i+1]));
+                 (  min([ j | j in POINT where x[j] = i])
+                  < min([ j | j in POINT where x[j] = i+1]));
 
 var 0..maxdist: obj = min( i,j in POINT where i < j )
                          ( dist[i,j] + maxdist * (x[i] != x[j]) );
