@@ -22,7 +22,7 @@ constraint forall(p in PRISONER, d in danger where p != d)
                  ( abs(r[p] - r[d]) + abs(c[p] - c[d]) > 1 );
 
 constraint forall(p in female)(r[p] <= (n + 1) div 2);
-constraint forall(p in male)(r[p] >= (n - 1) div 2);
+constraint forall(p in male)(r[p] >= n div 2 + 1);
 
 var int: totalcost = sum(p in PRISONER)(cost[r[p],c[p]]);  
 solve minimize totalcost;
