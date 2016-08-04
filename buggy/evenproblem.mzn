@@ -1,5 +1,5 @@
 predicate even(var int:x) = 
-          let { var lb(x) div 2 .. ub(x) div 2: y } in x >= 2*y /\ x <= 2 * y;
+          let { var int: y } in x = 2*y;
 
 var -1..7: u;
 
